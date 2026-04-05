@@ -1,0 +1,62 @@
+[
+    {
+        "id": 31,
+        "title": "Agricultural land in Ashtarak",
+        "area_sqm": 5000,
+        "price_usd": 45000,
+        "location": "Ashtarak, Aragatsotn",
+        "description": "Fruitful garden, irrigation water available.",
+        "features": "water, near the road",
+        "image": "http://localhost:5000/images/lot/74.jpg"
+    },
+    {
+        "id": 32,
+        "title": "Land for Vineyard in Artashat",
+        "area_sqm": 8000,
+        "price_usd": 32000,
+        "location": "Artashat, Ararat",
+        "description": "Ideal for vineyard, fertile soil, includes constant irrigation system.",
+        "features": "irrigation, flat terrain, electricity",
+        "image": "http://localhost:5000/images/lot/75.jpg"
+    },
+    {
+        "id": 33,
+        "title": "Arable Land in Akhuryan",
+        "area_sqm": 12000,
+        "price_usd": 18000,
+        "location": "Akhuryan, Shirak",
+        "description": "Large territory suitable for wheat or potato cultivation.",
+        "features": "black soil, easy access",
+        "image": "http://localhost:5000/images/lot/76.jpg"
+    },
+    {
+        "id": 34,
+        "title": "Cherry Orchard in Karbi",
+        "area_sqm": 3500,
+        "price_usd": 55000,
+        "location": "Karbi, Aragatsotn",
+        "description": "Productive cherry orchard with high annual yield and a small storage hut.",
+        "features": "fenced, water, fruitful trees",
+        "image": "http://localhost:5000/images/lot/77.jpg"
+    },
+    {
+        "id": 35,
+        "title": "Pasture land near Dilijan",
+        "area_sqm": 20000,
+        "price_usd": 40000,
+        "location": "Dilijan, Tavush",
+        "description": "Beautiful mountain view, perfect for livestock or a small eco-farm.",
+        "features": "mountain view, drinking water nearby",
+        "image": "http://localhost:5000/images/lot/78.jpg"
+    },
+    {
+        "id": 36,
+        "title": "Greenhouse Plot in Armavir",
+        "area_sqm": 2500,
+        "price_usd": 27000,
+        "location": "Armavir, Armavir",
+        "description": "Prepared ground for greenhouse construction, gas and electricity available.",
+        "features": "gas, electricity, irrigation",
+        "image": "http://localhost:5000/images/lot/79.jpg"
+    }
+]

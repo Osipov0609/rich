@@ -1,0 +1,42 @@
+[
+    {
+        "id": 36,
+        "name": "Armen Hovhannisyan",
+        "position": "Senior Realtor",
+        "specialization": "Center and Arabkir (Apartments)",
+        "experience": "8 years",
+        "phone": "+374 91 00-00-00",
+        "email": "armen@richhouse.am",
+        "image": "http://localhost:5000/images/realtors/80.jpg"
+    },
+    {
+        "id": 37,
+        "name": "Ani Grigoryan",
+        "position": "Sales Specialist",
+        "specialization": "New Buildings and Mortgage",
+        "experience": "5 years",
+        "phone": "+374 94 00-00-00",
+        "email": "ani@richhouse.am",
+        "image": "http://localhost:5000/images/realtors/81.jpg"
+    },
+    {
+        "id": 38,
+        "name": "Karen Mirzoyan",
+        "position": "Land Specialist",
+        "specialization": "Aragatsotn and Kotayk Regions",
+        "experience": "10 years",
+        "phone": "+374 77 00-00-00",
+        "email": "karen@richhouse.am",
+        "image": "http://localhost:5000/images/realtors/82.jpg"
+    },
+    {
+        "id": 39,
+        "name": "Lilit Sargsyan",
+        "position": "Rental Consultant",
+        "specialization": "Commercial Spaces and Houses",
+        "experience": "4 years",
+        "phone": "+374 55 00-00-00",
+        "email": "lilit@richhouse.am",
+        "image": "http://localhost:5000/images/realtors/83.jpg"
+    }
+]
