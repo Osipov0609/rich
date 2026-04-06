@@ -1,0 +1,39 @@
+.lot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 30px;
+
+
+        .lot_result {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 15px;
+            border: 1px solid lightblue;
+            box-shadow: 0 0 15px lightblue,0 0 5px lightblue,0 0 5px lightblue;
+
+            img {
+                width: 650px;
+                height: 600px;
+                object-fit: cover;
+            }
+            p{
+                padding-left: 7px;
+                font-size: 21px;
+                color: #2d6a4f;
+            }
+            strong{
+                color: #1b4332;
+            }
+        }
+    }
+}

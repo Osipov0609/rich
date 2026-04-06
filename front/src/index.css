@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  list-style-type: none;
+  
+}
+body{
+  background:#d8f3dc ;
+}
+
+.box {
+  width: 1440px;
+}

@@ -1,0 +1,30 @@
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 50px;
+
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 50px;
+        .textOne{
+            font-size: 25px;
+            text-align: left;
+        }
+        .textTwo{
+            font-size: 25px;
+            text-align: start;
+        }
+        .textTree{
+            font-size: 25px;
+            text-align: left;
+        }
+        .textFor{
+            font-size: 25px;
+            text-align: left;
+        }
+    }
+}
