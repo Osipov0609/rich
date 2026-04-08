@@ -18,7 +18,8 @@ export default function Apartament() {
     const [repair, setRepair] = useState("");
     const [type, setType] = useState("");
 
-    const API_URL = "http://localhost:5000";
+    // Փոխարինիր սա քո Render-ի իրական հասցեով (առանց վերջին /-ի)
+    const API_URL = "https://rich-2.onrender.com"; 
 
     const [likes, setLikes] = useState(() => {
         const saved = localStorage.getItem('likedApartments');
@@ -52,13 +53,14 @@ export default function Apartament() {
             if (repair) params.append('repair', repair);
             if (type) params.append('type', type);
 
+            // Այստեղ fetch-ը կկատարվի production սերվերին
             const res = await fetch(`${API_URL}/apartments?${params.toString()}`);
             const result = await res.json();
             setData(result);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
-    }, [bedroom, building, furnishing, repair, type]);
+    }, [bedroom, building, furnishing, repair, type, API_URL]);
 
     useEffect(() => {
         fetchData();
@@ -104,10 +106,10 @@ export default function Apartament() {
 
                 <div className="results">
                     {data.map((item) => {
-                        // Զտում ենք նկարները և ստուգում, որ null չլինեն
+                        // Նկարների հասցեների կառուցումը
                         const apartmentImages = [
                             item.image, item.image2, item.image3, item.image4
-                        ].filter(Boolean);
+                        ].filter(Boolean).map(img => img.startsWith('http') ? img : `${API_URL}${img}`);
 
                         const isLiked = likes[item.id];
                         const isInCart = cart[item.id];
@@ -131,7 +133,6 @@ export default function Apartament() {
                                 >
                                     {apartmentImages.map((imgUrl, index) => (
                                         <SwiperSlide key={index}>
-                                            {/* Այստեղ imgUrl-ը արդեն գալիս է որպես "/images/..." JSON-ից */}
                                             <img src={imgUrl} alt={`${item.location} - ${index + 1}`} />
                                         </SwiperSlide>
                                     ))}

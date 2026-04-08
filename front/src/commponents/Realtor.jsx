@@ -5,9 +5,12 @@ export default function Realtor() {
     const [real, setReal] = useState([])
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
+    // Քո Render սերվերի հասցեն
+    const API_URL = "https://rich-2.onrender.com";
 
-        const fetchData = fetch('http://localhost:5000/realtor')
+    useEffect(() => {
+        // Օգտագործում ենք API_URL-ը
+        const fetchData = fetch(`${API_URL}/realtor`)
             .then(response => response.json());
 
         const timer = new Promise(resolve => setTimeout(resolve, 2000));
@@ -21,7 +24,7 @@ export default function Realtor() {
                 console.error('Error fetching Realtor', error);
                 setLoading(false);
             });
-    }, []);
+    }, [API_URL]);
 
     if (loading) {
         return (
@@ -35,20 +38,26 @@ export default function Realtor() {
         <div className='realtor'>
             <h2 style={{ textAlign: 'center' }}>My Team</h2>
             <div className="box">
-                {real.map((elem) => (
-                    <div key={elem.id} className="real_result">
+                {real.map((elem) => {
+                    // Նկարի հասցեի ստուգում և կառուցում
+                    const imageUrl = elem.image?.startsWith('http') 
+                        ? elem.image 
+                        : `${API_URL}${elem.image}`;
 
-                        <img src={elem.image} alt={elem.name} />
-                        <div style={{ padding: '10px' }}>
-                            <p><strong>Name:</strong> {elem.name}</p>
-                            <p><strong>Position:</strong> {elem.position}</p>
-                            <p><strong>Specialization:</strong> {elem.specialization}</p>
-                            <p><strong>Experience:</strong> {elem.experience}</p>
-                            <p><strong>Phone:</strong> {elem.phone}</p>
-                            <p><strong>Email:</strong> {elem.email}</p>
+                    return (
+                        <div key={elem.id} className="real_result">
+                            <img src={imageUrl} alt={elem.name} />
+                            <div style={{ padding: '10px' }}>
+                                <p><strong>Name:</strong> {elem.name}</p>
+                                <p><strong>Position:</strong> {elem.position}</p>
+                                <p><strong>Specialization:</strong> {elem.specialization}</p>
+                                <p><strong>Experience:</strong> {elem.experience}</p>
+                                <p><strong>Phone:</strong> {elem.phone}</p>
+                                <p><strong>Email:</strong> {elem.email}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         </div>
     );

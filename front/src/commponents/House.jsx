@@ -19,6 +19,9 @@ export default function Home() {
     const [type, setType] = useState("");
     const [propertyType, setPropertyType] = useState("");
 
+    // Քո Render սերվերի հասցեն
+    const API_URL = "https://rich-2.onrender.com";
+
     const [like, setLike] = useState(() => {
         const saved = localStorage.getItem('likedHouses');
         return saved ? JSON.parse(saved) : {};
@@ -39,8 +42,6 @@ export default function Home() {
         const newCart = { ...cart, [id]: !cart[id] };
         setCart(newCart);
         localStorage.setItem('cartHouses', JSON.stringify(newCart));
-        
-        // Սա թարմացնում է Header-ը իրական ժամանակում
         window.dispatchEvent(new Event('storage')); 
     };
 
@@ -54,13 +55,14 @@ export default function Home() {
             if (type) params.append('type', type);
             if (propertyType) params.append('propertyType', propertyType);
 
-            const res = await fetch(`http://localhost:5000/houses?${params.toString()}`);
+            // Օգտագործում ենք API_URL փոփոխականը
+            const res = await fetch(`${API_URL}/houses?${params.toString()}`);
             const result = await res.json();
             setData(result);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
-    }, [bedroom, building, furnishing, repair, type, propertyType]);
+    }, [bedroom, building, furnishing, repair, type, propertyType, API_URL]);
 
     useEffect(() => {
         fetchData();
@@ -115,10 +117,11 @@ export default function Home() {
 
                 <div className="results">
                     {data.map((item) => {
+                        // Ստուգում ենք նկարները և ավելացնում API_URL-ը, եթե հասցեն սկսվում է /images-ով
                         const houseImages = [
                             item.image, item.image2, item.image3, 
                             item.image4, item.image5, item.image6
-                        ].filter(Boolean);
+                        ].filter(Boolean).map(img => img.startsWith('http') ? img : `${API_URL}${img}`);
 
                         const isLiked = like[item.id];
                         const isInCart = cart[item.id];

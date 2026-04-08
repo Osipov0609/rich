@@ -1,5 +1,4 @@
 import { useNavigate, NavLink } from 'react-router-dom';
-// import Logo from '../../public/images/logo/logo.jpg';
 import { FaRegHeart, FaTimes, FaTrash, FaArrowLeft } from "react-icons/fa";
 import { AiOutlineCreditCard } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
@@ -15,6 +14,9 @@ export default function Header() {
   const [favoriteItems, setFavoriteItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
+  // Քո Render սերվերի հասցեն
+  const API_URL = "https://rich-2.onrender.com";
+
   const loadItems = useCallback(async (apKey, houseKey, setter) => {
     try {
       const savedAp = JSON.parse(localStorage.getItem(apKey) || '{}');
@@ -28,14 +30,14 @@ export default function Header() {
         return;
       }
 
+      // Փոխում ենք localhost-ը API_URL-ով
       const [resAp, resHouse] = await Promise.all([
-        fetch('http://localhost:5000/apartments'),
-        fetch('http://localhost:5000/houses')
+        fetch(`${API_URL}/apartments`),
+        fetch(`${API_URL}/houses`)
       ]);
 
       const allAp = await resAp.json();
       const allHouse = await resHouse.json();
-
 
       const filteredAp = allAp.filter(item => apIds.includes(item.id.toString()));
       const filteredHouse = allHouse.filter(item => houseIds.includes(item.id.toString()));
@@ -44,7 +46,7 @@ export default function Header() {
     } catch (error) {
       console.error("Error loading items:", error);
     }
-  }, []);
+  }, [API_URL]); // Ավելացնում ենք API_URL-ը որպես dependency
 
 
   useEffect(() => {
@@ -78,6 +80,12 @@ export default function Header() {
   };
 
   const totalPrice = cartItems.reduce((sum, item) => sum + Number(item.price), 0);
+
+  // Ֆունկցիա նկարի հասցեն ստանալու համար
+  const getImageUrl = (img) => {
+    if (!img) return "";
+    return img.startsWith('http') ? img : `${API_URL}${img}`;
+  };
 
   return (
     <>
@@ -122,12 +130,10 @@ export default function Header() {
                 />
                 {cartItems.length > 0 && <span className="badge">{cartItems.length}</span>}
             </div>
-
-
           </div>
         </div>
 
- 
+        {/* Favorites Side Panel */}
         <div className={`side-panel ${activePanel === 'heart' ? 'open' : ''}`}>
           <div className="panel-header">
             <h3>Favorites ({favoriteItems.length})</h3>
@@ -136,7 +142,7 @@ export default function Header() {
           <div className="panel-content">
             {favoriteItems.map(item => (
               <div key={item.id} className="fav-item">
-                <img src={item.image} alt="" className="fav-img" />
+                <img src={getImageUrl(item.image)} alt="" className="fav-img" />
                 <div className="fav-info">
                   <h4>{item.location}</h4>
                   <p>{item.price}$</p>
@@ -147,7 +153,7 @@ export default function Header() {
           </div>
         </div>
 
- 
+        {/* Cart Side Panel */}
         <div className={`side-panel ${activePanel === 'cart' ? 'open' : ''}`}>
           <div className="panel-header">
             <h3>My Cart ({cartItems.length})</h3>
@@ -156,7 +162,7 @@ export default function Header() {
           <div className="panel-content">
             {cartItems.map(item => (
               <div key={item.id} className="fav-item">
-                <img src={item.image} alt="" className="fav-img" />
+                <img src={getImageUrl(item.image)} alt="" className="fav-img" />
                 <div className="fav-info">
                   <h4>{item.location}</h4>
                   <p>{item.price}$</p>
@@ -193,4 +199,3 @@ export default function Header() {
     </>
   );
 }
-
