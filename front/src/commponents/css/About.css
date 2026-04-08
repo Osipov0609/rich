@@ -3,28 +3,29 @@
     align-items: center;
     justify-content: center;
     padding-block: 50px;
+}
 
-    .box {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 50px;
-        .textOne{
-            font-size: 25px;
-            text-align: left;
-        }
-        .textTwo{
-            font-size: 25px;
-            text-align: start;
-        }
-        .textTree{
-            font-size: 25px;
-            text-align: left;
-        }
-        .textFor{
-            font-size: 25px;
-            text-align: left;
-        }
-    }
+.about .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.about .box .textOne,
+.about .box .textTwo,
+.about .box .textTree,
+.about .box .textFor {
+    font-size: 25px;
+}
+
+.about .box .textOne,
+.about .box .textTree,
+.about .box .textFor {
+    text-align: left;
+}
+
+.about .box .textTwo {
+    text-align: start;
 }
