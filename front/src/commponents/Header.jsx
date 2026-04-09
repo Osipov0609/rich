@@ -15,7 +15,7 @@ export default function Header() {
   const [cartItems, setCartItems] = useState([]);
 
   // Քո Render սերվերի հասցեն
-  const API_URL = "https://rich-2.onrender.com";
+  const API_URL = "https://rich-house-front.onrender.com";
 
   const loadItems = useCallback(async (apKey, houseKey, setter) => {
     try {

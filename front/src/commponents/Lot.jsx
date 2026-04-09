@@ -6,7 +6,7 @@ export default function Lot() {
     const [loading, setLoading] = useState(true)
 
     // Քո Render սերվերի հասցեն
-    const API_URL = "https://rich-2.onrender.com";
+    const API_URL = "https://rich-house-front.onrender.com";
 
     useEffect(() => {
         // Փոխում ենք հասցեն իրական սերվերի հասցեով

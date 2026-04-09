@@ -19,7 +19,7 @@ export default function Apartament() {
     const [type, setType] = useState("");
 
     // Փոխարինիր սա քո Render-ի իրական հասցեով (առանց վերջին /-ի)
-    const API_URL = "https://rich-2.onrender.com"; 
+    const API_URL = "https://rich-house-front.onrender.com"; 
 
     const [likes, setLikes] = useState(() => {
         const saved = localStorage.getItem('likedApartments');
