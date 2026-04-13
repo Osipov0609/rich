@@ -123,8 +123,7 @@ export default function Home() {
                             item.image4, item.image5, item.image6
                         ].filter(Boolean).map(img => {
                             if (img.startsWith('http')) return img;
-                            const cleanImgPath = img.startsWith('/') ? img.slice(1) : img;
-                            return `${API_URL}/${cleanImgPath}`;
+                            return img.startsWith('/') ? img : `/${img}`;
                         });
 
                         return (
