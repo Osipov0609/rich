@@ -120,14 +120,18 @@ export default function Home() {
 
                 <div className="results">
                     {data.map((item) => {
-                        // Ստուգում ենք նկարները և ավելացնում API_URL-ը, եթե հասցեն սկսվում է /images-ով
+                        // 1. Սահմանում ենք այս երկու փոփոխականները, որոնք build-ի ժամանակ սխալ էին տալիս
+                        const isLiked = !!like[item.id];
+                        const isInCart = !!cart[item.id];
+
                         // ՍՏՈՒԳՈՒՄ ԵՆՔ ՆԿԱՐՆԵՐԸ
                         const houseImages = [
                             item.image, item.image2, item.image3,
                             item.image4, item.image5, item.image6
                         ].filter(Boolean).map(img => {
                             if (img.startsWith('http')) return img;
-                            return img.startsWith('/') ? img : `/${img}`;
+                            // Ավելացնում ենք API_URL-ը, եթե նկարը սերվերից է գալիս
+                            return img.startsWith('/') ? `${API_URL}${img}` : `${API_URL}/${img}`;
                         });
 
                         return (
@@ -139,6 +143,7 @@ export default function Home() {
                                         <FaRegHeart className='fafaHeart' style={{ color: 'white', fontSize: '22px' }} />
                                     )}
                                 </div>
+                                {/* Մնացած կոդը նույնն է... */}
 
                                 <Swiper
                                     modules={[Navigation, Pagination]}
