@@ -8,8 +8,6 @@ import Card from './Card';
 
 export default function Header() {
   const navigate = useNavigate();
-
-  // 1. Սկզբնական արժեքը պարտադիր null, որպեսզի class-ը չլինի "open"
   const [activePanel, setActivePanel] = useState(null);
   const [showCardPage, setShowCardPage] = useState(false);
   const [favoriteItems, setFavoriteItems] = useState([]);
@@ -48,7 +46,6 @@ export default function Header() {
     }
   }, [API_URL]);
 
-  // 2. Միայն տվյալների սինխրոնիզացիա, առանց activePanel-ին ձեռք տալու
   useEffect(() => {
     loadItems('likedApartments', 'likedHouses', setFavoriteItems);
     loadItems('cartItems', 'cartHouses', setCartItems);
@@ -74,7 +71,12 @@ export default function Header() {
   };
 
   const totalPrice = cartItems.reduce((sum, item) => sum + Number(item.price), 0);
-  const getImageUrl = (img) => (!img ? "" : (img.startsWith('http') ? img : `${API_URL}${img}`));
+  
+  const getImageUrl = (img) => {
+    if (!img) return "";
+    if (img.startsWith('http')) return img;
+    return img.startsWith('/') ? img : `/${img}`;
+  };
 
   return (
     <>
@@ -97,7 +99,6 @@ export default function Header() {
             <NavLink to="/Realtor" onClick={() => { setShowCardPage(false); setMenuOpen(false); }}>Realtor</NavLink>
             <NavLink to="/contact" onClick={() => { setShowCardPage(false); setMenuOpen(false); }}>Contact</NavLink>
             
-            {/* Իկոնկաները բուրգերի մեջ (քո CSS-ի .mobile-icons class-ով) */}
             <div className="icons mobile-icons">
               <div className="icon-wrapper">
                 <FaRegHeart
@@ -136,8 +137,6 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* --- ՊԱՆԵԼՆԵՐ --- */}
-        {/* Favorites */}
         <div className={`side-panel ${activePanel === 'heart' ? 'open' : ''}`}>
           <div className="panel-header">
             <h3>Favorites ({favoriteItems.length})</h3>
@@ -157,7 +156,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Cart - Սա նկարի մեջի բացված պանելն է */}
         <div className={`side-panel ${activePanel === 'cart' ? 'open' : ''}`}>
           <div className="panel-header">
             <h3>My Cart ({cartItems.length})</h3>
@@ -185,7 +183,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Overlay - միայն երբ ինչ-որ պանել բաց է */}
         {activePanel && <div className="overlay" onClick={() => setActivePanel(null)}></div>}
       </div>
 
