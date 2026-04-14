@@ -71,12 +71,13 @@ export default function Home() {
         <div className="house">
             <div className="box">
                 <nav className="navHouse">
+
                     <select value={bedroom} onChange={(e) => setBedroom(e.target.value)}>
                         <option value="">Rooms (All)</option>
-                        <option value="One">One</option>
                         <option value="Two">Two</option>
                         <option value="Three">Three</option>
                         <option value="Four">Four</option>
+                        <option value="Five">Five</option>
                     </select>
 
                     <select value={type} onChange={(e) => setType(e.target.value)}>
@@ -84,23 +85,24 @@ export default function Home() {
                         <option value="sale">Sale</option>
                         <option value="rent">Rent</option>
                     </select>
-
-                    <select value={building} onChange={(e) => setBuilding(e.target.value)}>
-                        <option value="">Building (All)</option>
+                    <select value={type} onChange={(e) => setBuilding(e.target.value)}>
+                        <option value="">Type (All)</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                     </select>
 
                     <select value={furnishing} onChange={(e) => setFurnishing(e.target.value)}>
                         <option value="">Furnishing (All)</option>
-                        <option value="furnished">Furnished</option>
-                        <option value="unfurnished">Unfurnished</option>
+                        <option value="Fully equipped">Fully equipped</option>
+                        <option value="Partially">Partially</option>
+                        <option value="Not equipped">Not equipped</option>
                     </select>
 
                     <select value={repair} onChange={(e) => setRepair(e.target.value)}>
                         <option value="">Repair (All)</option>
                         <option value="Repaired">Repaired</option>
                         <option value="Designer">Designer</option>
+                        <option value="Partially">Partially</option>
                         <option value="Old">Old</option>
                     </select>
 
@@ -113,11 +115,8 @@ export default function Home() {
 
                 <div className="results">
                     {data.map((item) => {
-                        // Ուղղված build-ի սխալները
                         const isLiked = !!like[item.id];
-                        const isInCart = !!cart[item.id];
-
-                        // Ուղղված նկարների հասցեները
+                        const isInCart = !!cart[item.id]
                         const houseImages = [
                             item.image, item.image2, item.image3,
                             item.image4, item.image5, item.image6

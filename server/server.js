@@ -35,18 +35,23 @@ app.get('/apartments', (req, res) => {
 
     res.json(filtered);
 });
-
 app.get('/houses', (req, res) => {
     const { rooms, type, propertyType, building, furnishing, repair } = req.query;
 
     let filtered = house.filter(a => {
-        return (!rooms || a.rooms === rooms) &&
-            (!propertyType || a.propertyType === propertyType) &&
-            (!building || a.building === building) &&
-            (!furnishing || a.furnishing === furnishing) &&
-            (!repair || a.repair === repair) &&
-            (!type || a.type === type);
+        const match = (val1, val2) => {
+            if (!val2) return true; // Եթե ֆիլտրը ընտրված չէ
+            return String(val1).toLowerCase().trim() === String(val2).toLowerCase().trim();
+        };
+
+        return match(a.rooms, rooms) &&
+               match(a.type, type) &&
+               match(a.propertyType, propertyType) &&
+               match(a.building, building) &&
+               match(a.furnishing, furnishing) &&
+               match(a.repair, repair);
     });
+
     res.json(filtered);
 });
 
